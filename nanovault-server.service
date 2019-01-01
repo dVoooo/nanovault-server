@@ -1,0 +1,19 @@
+[Unit]
+Description=Nanovault Wallet Server
+#Requires=After=postgresql.service       # Requires the postgresql service to run first, if you need it
+
+[Service]
+ExecStart=/usr/bin/node /opt/nanovault-server/index.js
+# Required on some systems
+#WorkingDirectory=/opt/nanovault-server
+Restart=always
+RestartSec=10
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nanovault-server
+User=nanovault-server
+Group=nanovault-server
+
+[Install]
+WantedBy=multi-user.target
